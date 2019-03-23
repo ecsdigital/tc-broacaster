@@ -6,6 +6,7 @@ import com.ecs.tcbroadcaster.broadcasts.BroadcastManager;
 import com.ecs.tcbroadcaster.broadcasts.BuilderManager;
 import com.ecs.tcbroadcaster.datamodels.BuildState;
 import com.ecs.tcbroadcaster.datamodels.ProjectState;
+import com.ecs.tcbroadcaster.datamodels.puremodels.BuildConfig;
 import com.ecs.tcbroadcaster.dataprep.ProjectModeller;
 import com.sun.jersey.api.client.WebResource.Builder;
 
@@ -54,6 +55,26 @@ public class ProcessRequestManager {
 			String jsonResponse = bm.makeBroadcast(jsonStr,builder);
 			System.out.println(jsonResponse);
 		}
+	}
+
+	public void processRequest(Boolean listenerSwitch, SBuildType buildType, String dataTag) {
+		if(listenerSwitch) {
+			System.out.println("Running Build Finished request");
+			
+			BuildConfig bd = new BuildConfig();
+			bd.setBuildTypeId(buildType.getBuildTypeId());
+			bd.setBuildName(buildType.getName());
+			bd.setInternalId(buildType.getInternalId());
+			bd.setExternalId(buildType.getExternalId());
+			bd.setDescription(buildType.getDescription());
+			bd.setConfigParams(buildType.getConfigParameters());
+			
+			String jsonStr = jp.serializeObject(bd);
+			Builder builder = bldm.createBuilder(dataTag);
+			String jsonResponse = bm.makeBroadcast(jsonStr,builder);
+			System.out.println(jsonResponse);
+		}
+		
 	}
 
 }
