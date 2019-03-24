@@ -52,13 +52,15 @@ public class ConfigAdminIntialiseController extends BaseController{
 		String project_removedstr = request.getParameter("project_removeda");
 		String build_finishedstr = request.getParameter("build_finisheda");
 		String build_persistedstr = request.getParameter("build_persisteda");
-
+		String vcs_persistedstr = request.getParameter("vcs_persisteda");
+		System.out.println(vcs_persistedstr);
 		Boolean project_persister = Boolean.parseBoolean(project_persiststr);
 		Boolean project_removed = Boolean.parseBoolean(project_removedstr);
 		Boolean build_finished = Boolean.parseBoolean(build_finishedstr);
 		Boolean build_persisted = Boolean.parseBoolean(build_persistedstr);
+		Boolean vcs_persisted = Boolean.parseBoolean(vcs_persistedstr);
 		
-		
+		System.out.println("VCS : " +vcs_persisted);
 		Config.setUrl(url);
 		Config.setUsername(username);
 		Config.setPassword(password);
@@ -67,11 +69,13 @@ public class ConfigAdminIntialiseController extends BaseController{
 		ListenerConfig.setProjectRemoved(project_removed);
 		ListenerConfig.setBuildFinished(build_finished);
 		ListenerConfig.setBuildPersisted(build_persisted);
+		ListenerConfig.setVcsPersisted(vcs_persisted);
 		
 		System.out.println("Project Persist " +ListenerConfig.isProjectPersist());
 		System.out.println("Project Removed " +ListenerConfig.isProjectRemoved());
 		System.out.println("Build Finished " +ListenerConfig.isBuildFinished());
 		System.out.println("Build Persisted " +ListenerConfig.isBuildPersisted());
+		System.out.println("VCS Persisted " +ListenerConfig.isVcsPersisted());
 		
 		BroadcastManager bm = new BroadcastManager();
 		Builder builder =bldm.createBuilder("projects");

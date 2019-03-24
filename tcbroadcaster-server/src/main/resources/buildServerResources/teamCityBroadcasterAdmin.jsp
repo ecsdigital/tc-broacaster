@@ -13,10 +13,12 @@
    				var project_removeda= $('#project_removeda').is(":checked");
    				var build_finisheda= $('#build_finisheda').is(":checked");
    				var build_persisteda= $('#build_persisteda').is(":checked");
+   				var vcs_persisteda = $('#vcs_persisteda').is(":checked");
    				
     			BS.ajaxRequest(base_uri + '/admin/initialise.html', {
     				parameters :'urla='+urla+'&usernamea='+usernamea+'&passworda='+passworda+'&project_persista='+project_persista+
-    				'&project_removeda='+project_removeda+'&build_finisheda='+build_finisheda+'&build_persisteda='+build_persisteda,
+    				'&project_removeda='+project_removeda+'&build_finisheda='+build_finisheda+'&build_persisteda='+build_persisteda
+    				+'&vcs_persisteda='+vcs_persisteda,
     	            onComplete:function (data1, options) {
     	            	console.log("function complete");
     	            	$("#url").html(urla);
@@ -84,6 +86,23 @@
     		</td>
         </tr>
       </tbody>
+    </table>
+    <table class = "highlightable parametersTable" style>
+    	<tbody>
+    		<tr>
+          		<th style="width: 30%;">VCS Switches</th>
+         		<th colspan="2">Value</th>
+        	</tr>
+        	<tr>
+        		<td>VCS Persisted</td>
+        		<td id="vcs_persisted">
+        			<input type="checkbox" id="vcs_persisteda" <%=(Boolean)session.getAttribute("vcs_persisted") ? "checked='checked'" : "" %>>
+          			<span class="smallNote">
+    					"Listen for vcs config changes changes"
+    				</span>
+        		</td>
+        	</tr> 
+    	</tbody>
     </table>
     
     	<table class="runnerFormTable">

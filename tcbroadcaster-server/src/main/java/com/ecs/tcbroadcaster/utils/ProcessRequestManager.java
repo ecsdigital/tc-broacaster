@@ -1,11 +1,13 @@
 package com.ecs.tcbroadcaster.utils;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ecs.tcbroadcaster.broadcasts.BroadcastManager;
 import com.ecs.tcbroadcaster.broadcasts.BuilderManager;
 import com.ecs.tcbroadcaster.datamodels.BuildState;
 import com.ecs.tcbroadcaster.datamodels.ProjectState;
+import com.ecs.tcbroadcaster.datamodels.VcsRootState;
 import com.ecs.tcbroadcaster.datamodels.puremodels.BuildConfig;
 import com.ecs.tcbroadcaster.dataprep.ProjectModeller;
 import com.sun.jersey.api.client.WebResource.Builder;
@@ -81,6 +83,19 @@ public class ProcessRequestManager {
 	public void processRequest(Boolean listenerSwitch, SVcsRoot vcsRoot, String dataTag) {
 		if(listenerSwitch) {
 			System.out.println("VCS persisted request");
+			VcsRootState svcs = new VcsRootState();
+			svcs.setVcsName(vcsRoot.getVcsName());
+			svcs.setVcsExtId(vcsRoot.getExternalId());
+			svcs.setVcsDisplayName(vcsRoot.getVcsDisplayName());
+			svcs.setName(vcsRoot.getName());
+			Map<String, String> props = vcsRoot.getProperties();
+			svcs.setUsername(props.get("username"));
+			svcs.setVcsRootUrl(vcsRoot.getDescription());
+			
+			String jsonStr = jp.serializeObject(svcs);
+			Builder builder = bldm.createBuilder(dataTag);
+			String jsonResponse = bm.makeBroadcast(jsonStr,builder);
+			System.out.println(jsonResponse);
 		}
 		
 	}

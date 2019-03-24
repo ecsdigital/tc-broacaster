@@ -8,4 +8,5 @@
        <bean id="ConfigAdminIntialiseController" class="com.ecs.tcbroadcaster.controllers.ConfigAdminIntialiseController"></bean>
        <bean id="ProjectListener" class="com.ecs.tcbroadcaster.listeners.ProjectListener"></bean>
        <bean id="BuildListener" class="com.ecs.tcbroadcaster.listeners.BuildListener"></bean>
+       <bean id="VcsListener" class="com.ecs.tcbroadcaster.listeners.VcsListener"></bean>
 </beans>

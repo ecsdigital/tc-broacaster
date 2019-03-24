@@ -50,6 +50,7 @@ public class BroadcastAdminController extends AdminPage{
 		  request.getSession().setAttribute("project_removed", ListenerConfig.isProjectRemoved());
 		  request.getSession().setAttribute("build_finished", ListenerConfig.isBuildFinished());
 		  request.getSession().setAttribute("build_persisted", ListenerConfig.isBuildPersisted());
+		  request.getSession().setAttribute("vcs_persisted", ListenerConfig.isVcsPersisted());
 		  
 		  return super.isAvailable(request) && checkHasGlobalPermission(request, Permission.CHANGE_SERVER_SETTINGS);
 		
