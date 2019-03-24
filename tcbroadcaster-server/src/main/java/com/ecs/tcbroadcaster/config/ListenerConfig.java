@@ -6,6 +6,15 @@ public class ListenerConfig {
 	private static boolean projectRemoved=false;
 	private static boolean buildFinished=false;
 	private static boolean buildPersisted=false;
+	private static boolean vcsPersisted=false;
+
+	public static boolean isVcsPersisted() {
+		return vcsPersisted;
+	}
+
+	public static void setVcsPersisted(boolean vcsPersisted) {
+		ListenerConfig.vcsPersisted = vcsPersisted;
+	}
 
 	public static boolean isBuildPersisted() {
 		return buildPersisted;

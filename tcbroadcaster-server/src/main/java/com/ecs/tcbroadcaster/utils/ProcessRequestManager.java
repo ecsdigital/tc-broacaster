@@ -14,6 +14,7 @@ import jetbrains.buildServer.ExtensionHolder;
 import jetbrains.buildServer.serverSide.SBuild;
 import jetbrains.buildServer.serverSide.SBuildType;
 import jetbrains.buildServer.serverSide.SProject;
+import jetbrains.buildServer.vcs.SVcsRoot;
 
 public class ProcessRequestManager {
 	
@@ -73,6 +74,13 @@ public class ProcessRequestManager {
 			Builder builder = bldm.createBuilder(dataTag);
 			String jsonResponse = bm.makeBroadcast(jsonStr,builder);
 			System.out.println(jsonResponse);
+		}
+		
+	}
+
+	public void processRequest(Boolean listenerSwitch, SVcsRoot vcsRoot, String dataTag) {
+		if(listenerSwitch) {
+			System.out.println("VCS persisted request");
 		}
 		
 	}
